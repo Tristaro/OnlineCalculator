@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scientific Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .result {
+            margin-bottom: 10px;
+            padding: 10px;
+            text-align: right;
+            font-size: 20px;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .button {
+            width: 80px;
+            height: 50px;
+            margin: 5px;
+            font-size: 18px;
+            border-radius: 5px;
+            background-color: #HEX_COLOR;
+            border: 1px solid #ccc;
+        }
+
+        .button-row {
+            margin-bottom: 10px;
+        }
+
+        .button-row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="result" id="result">0</div>
+        <div class="button-row">
+            <button class="button" onclick="clearResult()">C</button>
+            <button class="button" onclick="backspace()">←</button>
+            <button class="button" onclick="appendValue('(')">(</button>
+            <button class="button" onclick="appendValue(')')">)</button>
+        </div>
+        <div class="button-row">
+            <button class="button" onclick="appendValue('7')">7</button>
+            <button class="button" onclick="appendValue('8')">8</button>
+            <button class="button" onclick="appendValue('9')">9</button>
+            <button class="button" onclick="appendValue('/')">/</button>
+        </div>
+        <div class="button-row">
+            <button class="button" onclick="appendValue('4')">4</button>
+            <button class="button" onclick="appendValue('5')">5</button>
+            <button class="button" onclick="appendValue('6')">6</button>
+            <button class="button" onclick="appendValue('*')">*</button>
+        </div>
+        <div class="button-row">
+            <button class="button" onclick="appendValue('1')">1</button>
+            <button class="button" onclick="appendValue('2')">2</button>
+            <button class="button" onclick="appendValue('3')">3</button>
+            <button class="button" onclick="appendValue('-')">-</button>
+        </div>
+        <div class="button-row">
+            <button class="button" onclick="appendValue('0')">0</button>
+            <button class="button" onclick="appendValue('.')">.</button>
+            <button class="button" onclick="calculate()">=</button>
+            <button class="button" onclick="appendValue('+')">+</button>
+        </div>
+    </div>
+
+    <script>
+        function clearResult() {
+            document.getElementById('result').innerHTML = '0';
+        }
+
+        function backspace() {
+            var result = document.getElementById('result').innerHTML;
+            document.getElementById('result').innerHTML = result.slice(0, -1);
+        }
+
+        function appendValue(value) {
+            var result = document.getElementById('result').innerHTML;
+            if (result === '0') {
+                document.getElementById('result').innerHTML = value;
+            } else {
+                document.getElementById('result').innerHTML = result + value;
+            }
+        }
+
+        function calculate() {
+            var result = document.getElementById('result').innerHTML;
+            var calculation = eval(result);
+            document.getElementById('result').innerHTML = calculation;
+        }
+    </script>
+</body>
+</html>
